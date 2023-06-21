@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block main %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: Segoe UI, sans-serif;
+        min-width: 400px;
+        width: 70%;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Symbol and Name are left aligned but Shares Price and Total are right */
+    }
+
+    th {
+        padding: 12px 15px;
+        font-size: 1.2em;
+    }
+
+    td {
+        padding: 12px 15px;
+
+    }
+
+    tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    {% for item in portfolio %}
+    <tr>
+
+        <TD>{{item.symbol.upper()}}</TD>
+        <TD>{{item.name}}</TD>
+        <TD>{{item["SUM(shares)"]}}</TD>
+        <TD>{{item.price}}</TD>
+        <TD>{{item.total}}</TD>
+
+    </tr>
+    {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Cash</b></td>
+        <td>{{money}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Total</b></td>
+        <td>{{total}}</td>
+    </tr>
+
+</table>
+
+{% endblock %}
